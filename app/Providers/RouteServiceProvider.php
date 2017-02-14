@@ -38,7 +38,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
-
+        //Backend路由
+        // $this->mapBackendRoutes();
         //
     }
 
@@ -69,5 +70,19 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware('api')
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
+    }
+    /**
+     * Define the "后台路由" routes for the application.
+     *
+     * admin后台路由.
+     *
+     * @return void
+     */
+    protected function mapBackendRoutes()
+    {
+        Route::prefix(env('APP_BACKEND_PREFIX'))
+             ->middleware('web')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/backend.php'));
     }
 }

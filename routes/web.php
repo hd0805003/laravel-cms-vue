@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,4 +12,14 @@
 
 Route::get('/', function () {
     return view('welcome');
+});
+//后台路由器
+Route::group(['prefix' => 'backend','namespace' => 'Backend', 'as' => env('APP_BACKEND_PREFIX').'.',], function () {
+	//首页
+	Route::get('index', 'IndexController@index');
+    Route::get('login', 'AuthController@tologin');
+    //管理员管理
+    	Route::get('admin_add', 'AdminController@admin_add');
+    	Route::post('addadmin', 'AdminController@addadmin');
+    	Route::get('admin_list', 'AdminController@admin_list');
 });
